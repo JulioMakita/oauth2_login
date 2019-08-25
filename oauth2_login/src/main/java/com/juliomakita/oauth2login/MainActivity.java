@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                 TokenResponse tokenResponse = (TokenResponse) response.body();
                                 Intent intent = new Intent(MainActivity.this, UserLoggedActivity.class);
                                 intent.setAction(Intent.ACTION_SEND);
-                                intent.putExtra("ACCESS_TOKEN", "Access Token: \n" + tokenResponse.getAccessToken());
+                                intent.putExtra("TOKEN_RESPONSE", tokenResponse);
                                 intent.setType("text/plain");
                                 startActivity(intent);
 

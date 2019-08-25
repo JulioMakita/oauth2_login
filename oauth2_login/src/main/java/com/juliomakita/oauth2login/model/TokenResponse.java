@@ -3,9 +3,10 @@ package com.juliomakita.oauth2login.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class TokenResponse {
+public class TokenResponse implements Serializable {
 
     @SerializedName("access_token")
     @Expose

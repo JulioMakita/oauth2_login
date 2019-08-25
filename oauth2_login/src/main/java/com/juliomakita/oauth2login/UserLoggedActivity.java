@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
+import com.juliomakita.oauth2login.model.TokenResponse;
+
 public class UserLoggedActivity extends AppCompatActivity {
 
     @Override
@@ -16,7 +20,11 @@ public class UserLoggedActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.dynamicText);
 
         Intent intent = getIntent();
-        String accessToken = (String) intent.getSerializableExtra("ACCESS_TOKEN");
-        textView.setText(accessToken);
+        TokenResponse accessToken = (TokenResponse) intent.getSerializableExtra("TOKEN_RESPONSE");
+
+        JWT jwt = new JWT(accessToken.getAccessToken());
+        Claim username = jwt.getClaims().get("sub");
+
+        textView.setText("You are logged in! " + username.asString());
     }
 }
